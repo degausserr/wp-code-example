@@ -1,0 +1,17 @@
+{
+  "name": "wp-code-example",
+  "version": "1.0.0",
+  "description": "Aaron Rowe code submission WaPo",
+  "scripts": {
+    "test": "node_modules/mocha/bin/_mocha test/scrabble-boggle-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/degausserr/wp-code-example.git"
+  },
+  "author": "Aaron Rowe",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^9.2.0"
+  }
+}
