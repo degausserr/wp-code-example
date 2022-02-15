@@ -58,9 +58,24 @@ describe('How many times can you spell that word?!', function() {
     assert.equal(matches, 1, 'Expected to find one match');
   });
 
-  it('repitition', function () {
-    const matches = scrabbleBoggle.handler('illillilliliii', 'ill')
-    assert.equal(matches, 3, 'Expected to find three matches');
+  it('exact match', function () {
+    const matches = scrabbleBoggle.handler('testing', 'testing')
+    assert.equal(matches, 1, 'Expected to find three matches');
+  });
+
+  it('multi chars', function () {
+    const matches = scrabbleBoggle.handler('illegalld', 'illegall')
+    assert.equal(matches, 1, 'Expected to find one match');
+  });
+
+  it('multi chars', function () {
+    const matches = scrabbleBoggle.handler('illegalll', 'illegall')
+    assert.equal(matches, 1, 'Expected to find one match');
+  });
+
+  it('multi chars too many', function () {
+    const matches = scrabbleBoggle.handler('illegaalll', 'illialllll')
+    assert.equal(matches, 0, 'Expected to find no matches');
   });
 
   it('repitition', function () {

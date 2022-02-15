@@ -11,7 +11,7 @@ exports.handler = (haystack, needle) => {
     && typeof needle === 'string' 
     && haystack.length > 0 
     && needle.length > 0
-    && (needle.length < haystack.length)) {
+    && (needle.length <= haystack.length)) {
 
     // make sure to normalize our inputs for comparison
     // in a production environment this may be slightly more robust and moved to a util function, but keeping it for simplicity here
@@ -20,6 +20,11 @@ exports.handler = (haystack, needle) => {
     needle = needle.replace(/[^a-zA-Z]/g, '').toLowerCase()
 
     if (haystack.length > 0 && needle.length > 0) {
+
+      if (haystack === needle) {
+        return 1
+      }
+
       const indexCount = []
       for(let i = 0; i < needle.length; i++) {
         const currentNeedleChar = needle.charAt(i)
@@ -29,9 +34,11 @@ exports.handler = (haystack, needle) => {
         if (currentCharCount > 0) {
           if (indexCount[currentNeedleChar] === undefined) {
             indexCount[currentNeedleChar] = currentCharCount
-          } else {
-            //duplicate characters will decrease our match rate by a factor of 2
-            indexCount[currentNeedleChar] = Math.floor(indexCount[currentNeedleChar] / 2)
+          } else {  
+            indexCount[currentNeedleChar] = indexCount[currentNeedleChar] -= 1
+            if (indexCount[currentNeedleChar] < 0) {
+              return 0
+            }
           }
         } else {
           return 0
