@@ -1,4 +1,4 @@
-# Aaron Rowe Code Example for Washington Post
+# Aaron Rowe Code Example
 
 For this test I chose to implement the Scrabble Boggle solution. This repository uses the Mocha library for basic unit testing.
 
